@@ -7,6 +7,9 @@ jobs:
     name: Создание и загрузка нового атефакта
     runs-on: ubuntu-latest
 
+    env:
+      ALL_REQUIREMENTS_FILE: Список всех зависиместей.txt
+
     steps:
       - uses: actions/checkout@v2 # Склонировать содержимое репозитория
 
@@ -17,5 +20,5 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: Список всех зависиместей
+          name: ${{ env.ALL_REQUIREMENTS_FILE }}
           path: ./all_reqs.txt
