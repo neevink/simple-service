@@ -20,7 +20,8 @@ jobs:
       - name: Установка зависимостей (а также pytest и flake8)
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt requirements.dev.txt
+          pip install -r requirements.txt
+          pip install -r requirements.dev.txt
 
       - name: Статический анализ (линтинг) при помощи flake8
         run: |
