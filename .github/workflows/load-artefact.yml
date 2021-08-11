@@ -1,0 +1,21 @@
+name: Загрузка артефакта
+
+on: [push]
+
+jobs:
+  upload_artifact:
+    name: Создание и загрузка нового атефакта
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2 # Склонировать содержимое репозитория
+
+      - name: Создание артефакта
+        run: |
+          cat requirements.txt > ./all_reqs.txt
+          cat requirements.dev.txt >> ./all_reqs.txt
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Список всех зависиместей
+          path: ./all_reqs.txt
