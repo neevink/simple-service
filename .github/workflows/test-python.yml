@@ -4,10 +4,11 @@ on: [push]
 
 jobs:
   start_flake8_and_pytest:
+    name: Запуск flake8 и pytest
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [ 3.6, 3.7, 3.8, 3.9 ]
+        python-version: [ 3.8, 3.9 ] # Версии для которых нужно выполнить эти лействия
 
     steps:
       - uses: actions/checkout@v2 # Склонировать содержимое репозитория
