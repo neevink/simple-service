@@ -1,6 +1,5 @@
 import pytest
 
 
-@pytest.fixture()
-def test_odawQWD546ne():
+def test_one():
     assert 1 == 1
