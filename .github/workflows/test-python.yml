@@ -3,7 +3,7 @@ name: Статический анализ и запуск тестов
 on: [push]
 
 jobs:
-  Запуск flake-8 и pytest:
+  start_flake8_and_pytest:
     runs-on: ubuntu-latest
     strategy:
       matrix:
