@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      ALL_REQUIREMENTS_FILE: Список всех зависиместей.txt
+      ALL_REQUIREMENTS_FILE: List of all requirements.txt
 
     steps:
       - uses: actions/checkout@v2 # Склонировать содержимое репозитория
