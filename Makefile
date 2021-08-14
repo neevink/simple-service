@@ -20,7 +20,7 @@ devenv:
 	venv/bin/pip install -Ue '.[dev]'
 
 lint:
-	env/bin/pylama
+	env/bin/pylama api/ tests/
 
 test:
 	env/bin/pytest
