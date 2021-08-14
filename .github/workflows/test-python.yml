@@ -21,10 +21,9 @@ jobs:
         run: |
           make devenv
 
-      - name: Статический анализ (линтинг) при помощи flake8
+      - name: Статический анализ (линтинг) при помощи pylama
         run: |
           make lint
-          make test
       - name: Запуск pytest тестов
         run: |
-          pytest
+          make test
