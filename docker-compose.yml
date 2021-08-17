@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+  api:
+    build: ./
+    restart: always
+    ports:
+      - 8800:8080
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 1

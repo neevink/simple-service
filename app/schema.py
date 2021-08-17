@@ -5,7 +5,7 @@ from marshmallow.fields import (
 from marshmallow.validate import Length
 
 
-# Сервис по установке кулеров для воды и услуг по доставке воды в эти кулеры
+# Сервис по продаже симпл-димплов
 
 class CustomerSchema(Schema):
     """Заказчик"""

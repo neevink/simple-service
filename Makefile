@@ -2,15 +2,21 @@ PROJECT_NAME ?= simple-service
 VERSION = $(shell python3 setup.py --version | tr '+' '-')
 
 all:
+	@echo "clean			- Очистить файлы, созданные distutils"
+	@echo "sdist			- Создать исходник"
 	@echo "devenv			- Пересоздать переменную окружения и заново установить зависимости"
 	@echo "lint				- Запустить линковщик"
-	@echo "clean			- Очистить файлы, созданные distutils"
+	@echo "test				- Запустить тесты"
 	@exit 0
 
 clean:
 	rm -fr *.egg-info dist
 
-devenv:
+sdist: clean
+	# официальный способ дистрибуции python-модулей
+	python3 setup.py sdist
+
+devenv: clean
 	rm -rf venv
 	# создаем новое окружение
 	python3.9 -m venv venv
