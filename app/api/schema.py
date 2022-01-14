@@ -5,10 +5,12 @@ from marshmallow.fields import (
 from marshmallow.validate import Length
 
 
-# Сервис по продаже симпл-димплов
-
 class CustomerSchema(Schema):
     """Заказчик"""
     name = Str(required=True, validate=Length(1, 32))
     address = Str(required=True, validate=Length(1, 64))
 
+
+class PostCreateSchema(Schema):
+    user_id = Int(required=True)
+    post_text = Str(required=True, validate=Length(1, 255))

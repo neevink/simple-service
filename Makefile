@@ -10,23 +10,30 @@ all:
 	@exit 0
 
 clean:
-	rm -fr *.egg-info dist
+	sudo rm -fr *.egg-info dist
 
 sdist: clean
 	# официальный способ дистрибуции python-модулей
 	python3 setup.py sdist
 
-devenv: clean
-	rm -rf venv
+install-python:
+	# устанавливаем python 3.9 и venv
+	sudo apt-get install -y python3.9
+	sudo apt-get install -y python3.9-venv
+
+devenv: install-python clean
+	sudo rm -rf venv
 	# создаем новое окружение
-	python3.9 -m venv venv
+	sudo python3.9 -m venv venv
 	# обновляем pip
-	venv/bin/pip install -U pip
+	sudo venv/bin/pip install -U pip
 	# устанавливаем основные + dev зависимости из extras_require (см. setup.py)
-	venv/bin/pip install -Ue '.[dev]'
+	sudo venv/bin/pip install -Ue '.[dev]'
 
 lint:
-	venv/bin/pylama api/ tests/
+	venv/bin/pylama app/api/ app/tests/
 
 test:
 	venv/bin/pytest
+
+.PHONY: clean sdist install-python devenv test
