@@ -1,30 +1,31 @@
 from aiohttp.web import Request, Response
-from aiohttp_apispec import request_schema
-from marshmallow import ValidationError
+from aiohttp_apispec import request_schema, response_schema, docs
 
-from app.api.schema import PostCreateSchema
+from app.api.schema import CreatePost, UsersPosts, NewsForUser, Post
 
 
-@request_schema(PostCreateSchema)
+@docs(
+    summary="Create a new post",
+)
+@request_schema(CreatePost)
+@response_schema(Post)
 async def create_post(request: Request) -> Response:
-    body = await request.json()
-    print(body)
-
-    schema = PostCreateSchema()
-    try:
-        pass
-        # result = schema.load(body)
-    except ValidationError as err:
-        return Response(text=str(err.messages), status=400)
-
-    return Response(text=schema.dumps(schema.load(body)), status=200)
+    return Response(body={}, status=200)
 
 
-def get_news(user_id: int) -> list:
-    """Get news feed (posts) for user by id"""
-    pass
+@docs(
+    summary="Get posts from users' page",
+)
+@response_schema(UsersPosts)
+def get_user_posts(request: Request) -> list:
+    user_id = int(request.match_info.get('user_id'))
+    return Response(body={'user_id': user_id}, status=200)
 
 
-def get_user_posts(user_id: int) -> list:
-    """Get user's posts by id (posts which he published)"""
-    pass
+@docs(
+    summary="Get news feed for user by id",
+)
+@response_schema(NewsForUser)
+def get_news(request: Request) -> list:
+    for_user_id = int(request.match_info.get('for_user_id'))
+    return Response(body={'user_id': for_user_id}, status=200)

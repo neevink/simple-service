@@ -1,4 +1,5 @@
-aiohttp~=3.7.4.post0
-aiohttp_apispec
+aiohttp==3.8.1
+aiohttp-apispec==2.2.1
+asyncpg
 setuptools~=57.0.0
 marshmallow~=3.13.0

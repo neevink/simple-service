@@ -4,6 +4,7 @@ from pkg_resources import parse_requirements
 
 module_name = 'app'
 
+
 def load_requirements(requirements_file_name: str) -> list:
     requirements = []
     with open(requirements_file_name, 'r') as f:
