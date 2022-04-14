@@ -4,6 +4,7 @@ from app.api.handlers.ping import ping
 from app.api.handlers.post import get_user_posts, get_news, create_post
 from app.api.handlers.profile import get_profile
 from app.api.handlers.user import create_user
+from app.api.handlers.auth import login, refresh
 
 
 def setup_routes(app: web.Application) -> None:
@@ -18,5 +19,10 @@ def setup_routes(app: web.Application) -> None:
             web.get(r'/posts/{user_id:\d+}', get_user_posts),
             web.post(r'/post', create_post),
             web.get(r'/news/{for_user_id:\d+}', get_news),
+
+            web.post(r'/auth/token', login),
+            web.post(r'/auth/refresh', refresh),
+
+            # web.get('/ws', chat_handler),
         ]
     )
