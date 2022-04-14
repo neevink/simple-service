@@ -1,14 +1,26 @@
 version: '3.3'
 
 services:
-  api:
-    build: ./
-    restart: always
-    ports:
-      - 8800:8080
+#  api:
+#    build: ./
+#    restart: always
+#    ports:
+#      - 8800:8080
 
   db:
     image: postgres
     restart: always
+    ports:
+      - 5432:5432
     environment:
+      POSTGRES_USER: kirill
       POSTGRES_PASSWORD: 1
+      POSTGRES_DB: test_db
+
+  adminer:
+    image: adminer
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - 9999:8080

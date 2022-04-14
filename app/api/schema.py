@@ -50,7 +50,7 @@ class UserDetail(Schema):
     user_id = Int(required=True)
     first_name = Str(required=True, validate=Length(1, 31))
     last_name = Str(required=True, validate=Length(1, 31))
-    date_of_birth = DateTime()
+    birth_date = DateTime()
     country = Str(validate=Length(1, 31))
 
     friends = List(Nested(User), required=True)
@@ -63,7 +63,7 @@ class CreateUser(Schema):
 
     first_name = Str(required=True, validate=Length(1, 31))
     last_name = Str(required=True, validate=Length(1, 31))
-    date_of_birth = DateTime()
+    birth_date = DateTime()
     country = Int()
 
 
@@ -92,3 +92,26 @@ class NewsForUser(Schema):
     """"Лента новостей (постов) для пользователя - ответ"""
     for_user_id = Int(required=True)
     news = List(Nested(Post), required=True)
+
+
+# AUTH
+
+class AuthRequest(Schema):
+    login = Str(required=True)
+    password = Str(required=True)
+
+
+class AuthResponse(Schema):
+    access_token = Str(required=True)
+    refresh_token = Str(required=True)
+    token_type = Str(required=True)
+    expires_in = Int(required=True)
+    refresh_expires_in = Int(required=True)
+
+    username = Str(required=True)
+    # roles = List(required=True)
+
+
+class RefreshRequest(Schema):
+    username = Str(required=True)
+    refresh_token = Str(required=True)

@@ -5,14 +5,18 @@ from aiohttp.web_app import Application
 from aiohttp import PAYLOAD_REGISTRY
 from aiohttp_apispec import setup_aiohttp_apispec, validation_middleware
 
+from app.db.pg import setup_pg
 from app.api.routes_configurator import setup_routes
-from app.api.middlewares import error_middleware, handle_validation_error
+from app.api.middlewares import error_middleware, handle_validation_error, login_middleware
 from app.api.payloads import AsyncGenJSONListPayload, JsonPayload
 
 
 def create_app() -> Application:
-    app = Application(middlewares=[error_middleware, validation_middleware])
+    app = Application(middlewares=[error_middleware, validation_middleware, login_middleware])
     setup_routes(app)
+
+    # Добавил в список контекстный генератор обработки запуска/остановки приложения
+    app.cleanup_ctx.append(setup_pg)
 
     # Создаёт Swagger-документацию для сервиса, которая доступна по адресу /api/docs
     setup_aiohttp_apispec(

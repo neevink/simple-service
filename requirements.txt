@@ -1,5 +1,11 @@
 aiohttp==3.8.1
 aiohttp-apispec==2.2.1
-asyncpg
-setuptools~=57.0.0
+aiomisc
+asyncpgsa
+pyjwt
 marshmallow~=3.13.0
+markupsafe==2.0.1
+psycopg2-binary
+setuptools~=57.0.0
+sqlalchemy
+websockets

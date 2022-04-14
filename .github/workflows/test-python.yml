@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [ 3.9 ] # Версии для которых нужно выполнить эти лействия
+        python-version: [ 3.8 ] # Версии для которых нужно выполнить эти лействия
 
     steps:
       - uses: actions/checkout@v2 # Склонировать содержимое репозитория

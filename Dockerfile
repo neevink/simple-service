@@ -6,4 +6,4 @@ COPY . .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD [ "python3.9", "./app/app.py" ]
+CMD [ "python3.8", "./app/app.py" ]
